@@ -2,6 +2,7 @@ package inhatc.aic.sbb.question.service;
 
 import inhatc.aic.sbb.question.entity.Question;
 import inhatc.aic.sbb.question.repository.QuestionRepository;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +15,12 @@ public class QuestionService {
     private final QuestionRepository questionRepository;
 
 
-    public List<Question> getQuestions() {
+    public List<Question> getQuestionList() {
         return questionRepository.findAll();
+    }
+
+    public Question getQuestion(Long id) {
+        Question question = questionRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("해당 id가 존재하지 않습니다: " + id));
+        return question;
     }
 }
