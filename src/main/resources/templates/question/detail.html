@@ -5,12 +5,18 @@
     <title>Question Detail</title>
 </head>
 <body>
-    <h1>상세 페이지</h1>
-    <h3>상세 정보</h3>
-    <h4 th:text="${question.subject}"></h4>
+    <h1 th:text="${question.subject}">상세 페이지</h1>
     <div th:text="${question.content}"></div>
+    <h5 th:text="|${#lists.size(question.answerList)}개의 답변이 있습니다.|">리스트</h5>
+    <div>
+        <ul>
+            <li th:each="answer : ${question.answerList}">
+                <div th:text="${answer.content}"></div>
+            </li>
+        </ul>
+    </div>
     <form th:action="@{|/answer/create/${question.id}|}" method="post">
-        <textarea id="content" name="content"></textarea>
+        <textarea id="content" name="content" rows="15"></textarea>
         <input type="submit" value="답변 등록">
     </form>
 </body>

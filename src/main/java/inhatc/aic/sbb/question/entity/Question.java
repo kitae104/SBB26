@@ -12,7 +12,7 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
-@ToString(exclude = "answerList") // answerList는 제외하고 출력
+@ToString // answerList는 제외하고 출력
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder

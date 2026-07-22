@@ -37,6 +37,7 @@ public class QuestionController {
         Question question = questionService.getQuestion(id);
         log.info("question = {}", question);
         model.addAttribute("question", question);
+
         return "question/detail";
     }
 }

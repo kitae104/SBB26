@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 @Entity
 @Getter
 @Setter
-@ToString
+@ToString(exclude = "question")
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -32,5 +32,5 @@ public class Answer {
     // 여러개의 응답이 하나의 질문과 관계가 있음
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "question_id", nullable = false)
-    private Question question;  // 질문
+    private Question question;  // 질문(외래키) - toString에서 순환 참조 발생
 }
